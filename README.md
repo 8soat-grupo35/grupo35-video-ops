@@ -1,17 +1,35 @@
-# grupo35-video-ops
-Repositório para armazenar a configuração do Terraform necessária para o projeto de vídeo
+# Grupo 35 Vídeo Ops
+
+Repositório para armazenar a configuração do Terraform necessária para o projeto de vídeo do grupo 35
 
 
 ## Recursos Criados
 
-- Backend Terraform S3 (Bucket: grupo35-terraform-state)
+#### Bucket S3
 
-- SNS Topic (Topic: video-status-topic)
-    - SNS Subscriber (SQS: video-status-api-queue)
-    - SNS Subscriber (SQS: video-status-notification-queue)
+| Nome do Recurso  | Descrição                           |
+| :---------- | :---------------------------------- |
+| `grupo35-terraform-state` | Salva o arquivo de estado do terraform em backend |
+| `video_processed` | Bucket que irá salvar os arquivos .zip processados com as imagens dos vídeos |
 
-- SQS Queue (Queue: video-status-api-queue)
-- SQS Queue (Queue: video-status-notification-queue)
-- SQS Queue (Queue: video-process-queue)
+#### SQS
 
-- S3 Bucket (Bucket: video_processed)
+| Nome do Recurso  | Descrição                           |
+| :---------- | :---------------------------------- |
+| `video-process-queue` | Fila para envio dos vídeos que devem ser processados pelo worker |
+| `video-status-api-queue` | Fila para atualização dos status de processamento do worker |
+| `video-status-notification-queue` | Fila para atualização dos status de processamento do worker |
+
+#### SNS
+
+| Nome do Recurso  | Descrição                           |
+| :---------- | :---------------------------------- |
+| `video-status-topic` | Tópico para informar as atualizações de status do processamento de vídeo |
+
+
+#### SNS Subscribers
+
+| Nome do Recurso Inscrito  | Recurso à ser inscrito |
+| :---------- | :---------------------------------- |
+| `video-status-topic` | `video-status-api-queue` |
+| `video-status-topic` | `video-status-notification-queue` |
