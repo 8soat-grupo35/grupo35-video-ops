@@ -1,5 +1,5 @@
-resource "aws_sqs_queue" "video-proccess-queue" {
-    name = "video-proccess-queue"
+resource "aws_sqs_queue" "video-process-queue" {
+    name = "video-process-queue"
     delay_seconds = 10
     visibility_timeout_seconds = 10
     max_message_size = 2048
