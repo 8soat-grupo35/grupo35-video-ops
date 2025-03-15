@@ -43,7 +43,7 @@ data "aws_iam_policy_document" "sh_sqs_policy_video_status_api" {
     condition {
       test     = "ArnEquals"
       variable = "aws:SourceArn"
-      values   = [aws_sns_topic.video-status-topic.arn] # Substitua 'seu_topico_sns' pelo nome do seu recurso SNS
+      values   = [aws_sns_topic.video-status-topic.arn]
     }
   }
 }
@@ -69,7 +69,7 @@ data "aws_iam_policy_document" "sh_sqs_policy_video_status_notification" {
     condition {
       test     = "ArnEquals"
       variable = "aws:SourceArn"
-      values   = [aws_sns_topic.video-status-topic.arn] # Substitua 'seu_topico_sns' pelo nome do seu recurso SNS
+      values   = [aws_sns_topic.video-status-topic.arn]
     }
   }
 }
