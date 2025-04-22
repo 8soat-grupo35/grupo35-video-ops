@@ -1,4 +1,4 @@
-/*resource "aws_eks_access_entry" "eks_access_entry_video_processing" {
+resource "aws_eks_access_entry" "eks_access_entry_video_processing" {
   cluster_name      = aws_eks_cluster.eks_cluster_grupo35_video_processing.name
   principal_arn     = "arn:aws:iam::${var.accountIdVoclabs}:role/voclabs"
   kubernetes_groups = ["8soat35"]
@@ -20,7 +20,7 @@ resource "aws_eks_cluster" "eks_cluster_grupo35_video_processing" {
   role_arn = data.aws_iam_role.labrole.arn
   vpc_config {
     subnet_ids = [for id,subnet in data.aws_subnet.subnet : id]
-    security_group_ids = [aws_security_group.sg_fastfood_8soat35.id]
+    security_group_ids = [aws_security_group.grupo35-sg.id]
   }
 
   access_config {
@@ -46,4 +46,3 @@ resource "aws_eks_node_group" "eks_nodeg_grupo35_video_processing" {
     max_unavailable = 1
   }
 }
-*/
