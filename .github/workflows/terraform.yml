@@ -42,14 +42,11 @@ jobs:
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
           aws-region: ${{ secrets.AWS_REGION_DEFAULT }}
 
-      - name: Update Kube Config
-        run: aws eks update-kubeconfig --name ${{ secrets.CLUSTER_NAME }} --region ${{ secrets.REGION_DEFAULT }}
-
       - name: Terraform Init
         run: terraform init
 
       - name: Terraform Plan
-        run: terraform plan
+        run: terraform plan -var "accountIdVoclabs=${{ secrets.AWS_ACCOUNT_ID }}"
 
       - name: Terraform Apply
         run: terraform apply -auto-approve -var "accountIdVoclabs=${{ secrets.AWS_ACCOUNT_ID }}"
