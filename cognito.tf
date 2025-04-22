@@ -28,7 +28,7 @@ resource "aws_cognito_user_pool_client" "grupo35_video_auth_user_pool_client" {
   user_pool_id = aws_cognito_user_pool.grupo35_video_auth_user_pool.id
   allowed_oauth_flows = ["code"]
   allowed_oauth_scopes = ["openid", "profile", "email","aws.cognito.signin.user.admin"]
-
+  allowed_oauth_flows_user_pool_client = true
   callback_urls        = ["https://example.com/callback"]
   logout_urls          = ["https://example.com/logout"]
   explicit_auth_flows = [
